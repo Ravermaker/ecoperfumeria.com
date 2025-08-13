@@ -10,7 +10,346 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&family=Cormorant+Garamond:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/catalogo.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a1a 50%, #000000 100%);
+            font-family: 'Lato', sans-serif;
+            position: relative;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 260px;
+            height: 260px;
+            background: url('logo_eco_header.png') no-repeat center;
+            background-size: 90% 90%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.10;
+            filter: grayscale(10%) drop-shadow(0 0 24px #d4af37cc);
+            border-radius: 50%;
+            box-shadow: 0 0 40px 0 #d4af3733, 0 0 0 8px rgba(255,255,255,0.04) inset;
+            background-color: rgba(255,255,255,0.01);
+        }
+
+        .luxury-container {
+            position: relative;
+            z-index: 1;
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo-section {
+            background: linear-gradient(45deg, #2d3748, #4a5568, #2d3748);
+            border-bottom: 3px solid #d4af37;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .main-title {
+            font-family: 'Playfair Display', serif;
+            background: linear-gradient(135deg, #d4af37, #ffd700, #d4af37);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+        }
+
+        .slogan {
+            font-family: 'Cormorant Garamond', serif;
+            color: #e2e8f0;
+            text-shadow: 0 0 20px rgba(226, 232, 240, 0.5);
+            letter-spacing: 2px;
+        }
+
+        .luxury-table {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .luxury-table thead {
+            background: linear-gradient(135deg, #d4af37, #b8860b, #d4af37);
+        }
+
+        .luxury-table th {
+            font-family: 'Playfair Display', serif;
+            color: #000;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 20px 15px;
+            position: relative;
+        }
+
+        .luxury-table th::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #000, transparent);
+        }
+
+        .luxury-table tbody tr {
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .luxury-table tbody tr:hover {
+            background: rgba(212, 175, 55, 0.1);
+            transform: scale(1.01);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.2);
+        }
+
+        .luxury-table td {
+            padding: 15px;
+            color: #e2e8f0;
+            font-weight: 300;
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .luxury-table td:last-child {
+            border-right: none;
+        }
+
+        .brand-name {
+            font-weight: 700;
+            color: #d4af37;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .product-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1em;
+            color: #f7fafc;
+        }
+
+        .category-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .diseñador {
+            background: linear-gradient(135deg, #4299e1, #3182ce);
+            color: white;
+        }
+
+        .nicho {
+            background: linear-gradient(135deg, #9f7aea, #805ad5);
+            color: white;
+        }
+
+        .gender-icon {
+            margin-right: 8px;
+            opacity: 0.8;
+        }
+
+        .notes-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        .note-tag {
+            padding: 2px 8px;
+            background: rgba(212, 175, 55, 0.2);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 12px;
+            font-size: 0.75em;
+            color: #d4af37;
+        }
+
+        .section-divider {
+            height: 60px;
+            background: linear-gradient(90deg, transparent, #d4af37, transparent);
+            margin: 40px 0;
+            position: relative;
+        }
+
+        .section-divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100px;
+            height: 3px;
+            background: #d4af37;
+            box-shadow: 0 0 20px #d4af37;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            color: #d4af37;
+            text-align: center;
+            font-size: 2.5em;
+            font-weight: 700;
+            margin: 30px 0;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+        }
+
+        /* Controles de vista del catálogo */
+        .catalog-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            justify-content: flex-end;
+            margin: 0.5rem 1rem 1rem;
+        }
+        .catalog-controls .btn-toggle {
+            background: rgba(255,255,255,0.08);
+            color: #f7fafc;
+            border: 1px solid rgba(255,255,255,0.15);
+            padding: 8px 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all .2s ease;
+            font-weight: 600;
+        }
+        .catalog-controls .btn-toggle.active,
+        .catalog-controls .btn-toggle:hover {
+            background: linear-gradient(135deg, #d4af37, #b8860b, #d4af37);
+            color: #111;
+            box-shadow: 0 8px 24px rgba(212,175,55,.25);
+        }
+
+        /* Grid de catálogo en tarjetas */
+        .catalog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1rem;
+            padding: 0 1rem 1.5rem;
+            align-items: stretch;
+        }
+        .product-card {
+            display: flex;
+            flex-direction: column;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 24px rgba(0,0,0,0.25);
+            transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+        }
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 36px rgba(0,0,0,0.35);
+            border-color: rgba(212,175,55,0.35);
+        }
+        .product-card .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: .5rem;
+            padding: .75rem 1rem 0.25rem;
+        }
+        .product-card .brand {
+            font-weight: 800;
+            color: #f3e5ab;
+            letter-spacing: .5px;
+            text-transform: uppercase;
+        }
+        .product-card .card-badge {
+            font-size: .75rem;
+            padding: 4px 10px;
+            border-radius: 999px;
+            background: rgba(212,175,55,.15);
+            border: 1px solid rgba(212,175,55,.35);
+            color: #f7f1c0;
+            white-space: nowrap;
+        }
+        .product-card .card-body {
+            display: flex;
+            flex-direction: column;
+            gap: .4rem;
+            padding: 0.5rem 1rem 1rem;
+            flex: 1;
+        }
+        .product-card .title {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 700;
+            font-size: 1.05rem;
+            line-height: 1.2;
+            color: #fff;
+        }
+        .product-card .notes {
+            color: #cbd5e1;
+            font-size: .9rem;
+            opacity: .9;
+        }
+        .product-card .card-actions {
+            margin-top: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: .5rem;
+        }
+        .product-card .btn {
+            background: linear-gradient(135deg, #0047ab, #0c1f3f);
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.15);
+            padding: 8px 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform .15s ease, box-shadow .2s ease;
+            font-weight: 700;
+        }
+        .product-card .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 24px rgba(0,0,0,.35);
+        }
+        .product-card .btn.whatsapp {
+            background: #25d366;
+            color: #0b2918;
+            border-color: rgba(37,211,102,.5);
+        }
+        .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+
+        @media (prefers-reduced-motion: reduce) {
+            .product-card { transition: none; }
+            .product-card .btn { transition: none; }
+        }
+
+        @media print {
+            body::before {
+                opacity: 0.02;
+            }
+            .luxury-table tbody tr:hover {
+                transform: none;
+                background: transparent;
+            }
+        }
+    </style>
 </head>
 <body class="min-h-screen">
     <div class="max-w-full mx-auto">
@@ -404,4 +743,494 @@
 </html>
 
 <!-- Correcciones adicionales -->
-<script src="js/catalogo.js" defer></script>
+<script>
+// Modal personalizado de confirmación de compra
+const purchaseModalHtml = `
+  <div id="purchaseModal" role="dialog" aria-modal="true" aria-labelledby="purchaseModalTitle" style="position:fixed;inset:0;z-index:2000;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px)">
+    <div class="purchase-modal-card" style="background:rgba(255,255,255,0.98);border-radius:16px;box-shadow:0 20px 60px rgba(212,175,55,0.35);max-width:520px;width:92%;overflow:hidden;border:1px solid rgba(212,175,55,0.4)">
+      <div style="background:linear-gradient(135deg,#0c1f3f,#0047ab);padding:16px 20px;color:#fff;display:flex;align-items:center;gap:10px">
+        <i class="fas fa-shopping-bag" aria-hidden="true"></i>
+        <h3 id="purchaseModalTitle" style="margin:0;font-family:'Playfair Display',serif;font-size:1.15rem">Confirmar compra</h3>
+      </div>
+      <div style="padding:18px 20px;color:#1a1a1a">
+        <p id="purchaseModalMessage" style="margin:0 0 12px 0;font-weight:600">¿Desea continuar con su compra?</p>
+        <p id="purchaseModalProduct" style="margin:0;color:#555;font-size:.95rem"></p>
+      </div>
+      <div style="display:flex;gap:10px;justify-content:flex-end;padding:16px 20px;background:#fffaf0;border-top:1px solid #f6e7b3">
+        <button type="button" id="btnStayCatalog" style="background:#fff;color:#0c1f3f;border:2px solid #0c1f3f;padding:10px 16px;border-radius:999px;font-weight:700;cursor:pointer">Seguir viendo</button>
+        <button type="button" id="btnGoCart" style="background:linear-gradient(135deg,#d4af37,#f4d03f);color:#0c1f3f;border:none;padding:10px 16px;border-radius:999px;font-weight:800;box-shadow:0 8px 22px rgba(212,175,55,.35);cursor:pointer">Ir al carrito</button>
+      </div>
+    </div>
+  </div>`;
+
+document.body.insertAdjacentHTML('beforeend', purchaseModalHtml);
+
+function showPurchaseModal(productName, onConfirm) {
+  const modal = document.getElementById('purchaseModal');
+  const productEl = document.getElementById('purchaseModalProduct');
+  const btnStay = document.getElementById('btnStayCatalog');
+  const btnGo = document.getElementById('btnGoCart');
+
+  productEl.textContent = productName ? `Producto: ${productName}` : '';
+  modal.style.display = 'flex';
+
+  const close = () => { modal.style.display = 'none'; cleanup(); };
+  const cleanup = () => {
+    btnStay.removeEventListener('click', onStay);
+    btnGo.removeEventListener('click', onGo);
+    modal.removeEventListener('click', onBackdrop);
+    document.removeEventListener('keydown', onEsc);
+  };
+  const onStay = () => close();
+  const onGo = () => { close(); if (typeof onConfirm === 'function') onConfirm(); };
+  const onBackdrop = (e) => { if (e.target === modal) close(); };
+  const onEsc = (e) => { if (e.key === 'Escape') close(); };
+
+  btnStay.addEventListener('click', onStay);
+  btnGo.addEventListener('click', onGo);
+  modal.addEventListener('click', onBackdrop);
+  document.addEventListener('keydown', onEsc);
+}
+// Mostrar 'N/A' en celdas de notas vacías
+window.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.notes-container').forEach(function(container) {
+        if (container.children.length === 0) {
+            container.innerHTML = '<span class="note-tag" style="opacity:0.5">N/A</span>';
+        }
+    });
+    // Accesibilidad: aria-hidden en íconos decorativos
+    document.querySelectorAll('.gender-icon').forEach(function(icon) {
+        icon.setAttribute('aria-hidden', 'true');
+    });
+    // Lazy loading de imágenes dentro de tablas si existiesen
+    document.querySelectorAll('img').forEach(img => {
+        if (!img.hasAttribute('loading')) img.setAttribute('loading', 'lazy');
+        if (!img.hasAttribute('decoding')) img.setAttribute('decoding', 'async');
+    });
+
+    // Inyectar columna y botón de compra en cada tabla
+    try {
+        document.querySelectorAll('.luxury-table table').forEach(table => {
+            // Agregar encabezado "COMPRAR" si no existe
+            const theadRow = table.querySelector('thead tr');
+            if (theadRow && !theadRow.querySelector('[data-col="comprar"]')) {
+                const th = document.createElement('th');
+                th.setAttribute('data-col', 'comprar');
+                th.className = 'text-center';
+                th.textContent = 'COMPRAR';
+                theadRow.appendChild(th);
+            }
+
+            // Agregar celda de acción con botón a cada fila del cuerpo
+            table.querySelectorAll('tbody tr').forEach(row => {
+                if (row.querySelector('[data-cell="comprar"]')) return; // evitar duplicados
+                const td = document.createElement('td');
+                td.setAttribute('data-cell', 'comprar');
+                td.style.textAlign = 'center';
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.textContent = 'Comprar';
+                btn.style.cssText = `
+                    background: linear-gradient(135deg, #d4af37, #f4d03f);
+                    color: #0c1f3f;
+                    border: none;
+                    padding: 8px 14px;
+                    border-radius: 999px;
+                    font-weight: 800;
+                    letter-spacing: .3px;
+                    box-shadow: 0 6px 18px rgba(212,175,55,.25);
+                    cursor: pointer;
+                    transition: transform .15s ease, box-shadow .15s ease;
+                `;
+                btn.addEventListener('mouseenter', () => btn.style.boxShadow = '0 10px 28px rgba(212,175,55,.35)');
+                btn.addEventListener('mouseleave', () => btn.style.boxShadow = '0 6px 18px rgba(212,175,55,.25)');
+                btn.addEventListener('click', () => {
+                    const brand = row.querySelector('.brand-name')?.textContent.trim() || '';
+                    const product = row.querySelector('.product-name')?.textContent.trim() || '';
+                    const name = `${brand} ${product}`.trim();
+                    const price = 20000; // precio base
+                    const image = 'logo_eco_header.png'; // placeholder confiable
+                    addItemToLocalStorageCart(name, price, image);
+
+                    showPurchaseModal(name, () => {
+                        window.location.href = 'index.html?openCart=1';
+                    });
+                });
+                td.appendChild(btn);
+                row.appendChild(td);
+            });
+        });
+    } catch (e) {
+        /* silencioso */
+    }
+});
+
+// Buscador de perfumes
+const searchForm = document.getElementById('searchForm');
+const searchInput = document.getElementById('searchInput');
+// Guardar el orden original de las filas
+const originalRows = {};
+document.querySelectorAll('.luxury-table tbody').forEach((tbody, idx) => {
+    originalRows[idx] = Array.from(tbody.children);
+});
+// Utilidades de búsqueda y reordenamiento
+function rowMatchesQuery(row, query) {
+    if (!query) return false;
+    const brand = row.querySelector('.brand-name')?.textContent.toLowerCase() || '';
+    const product = row.querySelector('.product-name')?.textContent.toLowerCase() || '';
+    const category = row.querySelector('.category-badge')?.textContent.toLowerCase() || '';
+    const notes = Array.from(row.querySelectorAll('.notes-container .note-tag'))
+        .map(n => n.textContent.toLowerCase())
+        .join(' ');
+    return (
+        brand.includes(query) ||
+        product.includes(query) ||
+        category.includes(query) ||
+        notes.includes(query)
+    );
+}
+
+function applySearch(query) {
+    const normalized = (query || '').trim().toLowerCase();
+    let anyFound = false;
+    document.querySelectorAll('.luxury-table tbody').forEach((tbody) => {
+        const rows = Array.from(tbody.children);
+        const matches = [];
+        const nonMatches = [];
+        rows.forEach((row) => {
+            const isMatch = normalized && rowMatchesQuery(row, normalized);
+            if (isMatch) {
+                row.style.background = 'rgba(212, 175, 55, 0.25)';
+                row.style.boxShadow = '0 0 16px 0 #d4af37cc';
+                matches.push(row);
+                anyFound = true;
+            } else {
+                row.style.background = '';
+                row.style.boxShadow = '';
+                nonMatches.push(row);
+            }
+        });
+        // Reordenar: coincidencias primero, respetando orden relativo original
+        matches.concat(nonMatches).forEach((row) => tbody.appendChild(row));
+        if (matches.length > 0) {
+            matches[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    });
+    if (!anyFound && normalized) {
+        alert('No se hallaron resultados');
+    }
+    return anyFound;
+}
+
+// Carrito (localStorage) compatible con index.html
+function addItemToLocalStorageCart(name, price, image) {
+    try {
+        const key = 'cart';
+        const existing = localStorage.getItem(key);
+        let cart = [];
+        if (existing) {
+            cart = JSON.parse(existing);
+        }
+        const found = cart.find(item => item.name === name);
+        if (found) {
+            found.quantity = (found.quantity || 0) + 1;
+        } else {
+            cart.push({ id: Date.now(), name, price, image, quantity: 1 });
+        }
+        localStorage.setItem(key, JSON.stringify(cart));
+    } catch (e) {
+        /* silencioso */
+    }
+}
+
+searchForm.addEventListener('submit', function() {
+    applySearch(searchInput.value);
+});
+// Limpiar resaltado y restaurar orden al borrar búsqueda
+searchInput.addEventListener('input', function() {
+    if (!this.value.trim()) {
+        document.querySelectorAll('.luxury-table tbody').forEach((tbody, idx) => {
+            // Restaurar el orden original
+            originalRows[idx].forEach(row => tbody.appendChild(row));
+            // Limpiar estilos
+            Array.from(tbody.children).forEach(row => {
+                row.style.background = '';
+                row.style.boxShadow = '';
+            });
+        });
+    }
+});
+
+// Autocompletado para el buscador
+const autocompleteList = document.createElement('ul');
+autocompleteList.id = 'autocompleteList';
+autocompleteList.style.position = 'absolute';
+autocompleteList.style.top = '100%';
+autocompleteList.style.right = '0';
+autocompleteList.style.left = '0';
+autocompleteList.style.zIndex = '100';
+autocompleteList.style.background = 'rgba(255,255,255,0.98)';
+autocompleteList.style.border = '1px solid #d4af37';
+autocompleteList.style.borderTop = 'none';
+autocompleteList.style.maxHeight = '220px';
+autocompleteList.style.overflowY = 'auto';
+autocompleteList.style.listStyle = 'none';
+autocompleteList.style.margin = '0';
+autocompleteList.style.padding = '0';
+autocompleteList.style.boxShadow = '0 8px 24px 0 #d4af3722';
+autocompleteList.style.fontWeight = '600';
+autocompleteList.style.color = '#b8860b';
+autocompleteList.style.display = 'none';
+searchForm.style.position = 'relative';
+searchForm.appendChild(autocompleteList);
+
+function normalizeStr(str) {
+    return (str || '')
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '');
+}
+
+function getAllPerfumes() {
+    const perfumes = [];
+    document.querySelectorAll('.luxury-table tbody tr').forEach(function(row) {
+        const brand = row.querySelector('.brand-name')?.textContent.trim() || '';
+        const product = row.querySelector('.product-name')?.textContent.trim() || '';
+        const category = row.querySelector('.category-badge')?.textContent.trim() || '';
+        const notes = Array.from(row.querySelectorAll('.notes-container .note-tag')).map(n => n.textContent.trim());
+        perfumes.push({
+            brand,
+            product,
+            category,
+            notes,
+            row
+        });
+    });
+    return perfumes;
+}
+
+searchInput.addEventListener('input', function() {
+    const rawValue = this.value.trim();
+    const value = normalizeStr(rawValue);
+    // Restaurar orden y estilos si se borra
+    if (!value) {
+        document.querySelectorAll('.luxury-table tbody').forEach((tbody, idx) => {
+            originalRows[idx].forEach(row => tbody.appendChild(row));
+            Array.from(tbody.children).forEach(row => {
+                row.style.background = '';
+                row.style.boxShadow = '';
+            });
+        });
+        autocompleteList.style.display = 'none';
+        return;
+    }
+    // Generar lista de coincidencias
+    const perfumes = getAllPerfumes();
+    const matches = perfumes.filter(p => {
+        const b = normalizeStr(p.brand);
+        const pr = normalizeStr(p.product);
+        const c = normalizeStr(p.category);
+        const ns = p.notes.map(normalizeStr);
+        return b.startsWith(value) || pr.startsWith(value) || c.startsWith(value) || ns.some(n => n.startsWith(value));
+    }).slice(0, 30);
+    autocompleteList.innerHTML = '';
+    if (matches.length > 0) {
+        matches.forEach(match => {
+            const li = document.createElement('li');
+            const notesPreview = (match.notes && match.notes.length) ? ` • Notas: ${match.notes.slice(0,3).join(', ')}` : '';
+            const catPreview = match.category ? ` • Cat: ${match.category}` : '';
+            li.textContent = `${match.brand} - ${match.product}${catPreview}${notesPreview}`;
+            li.style.padding = '8px 16px';
+            li.style.cursor = 'pointer';
+            li.style.borderBottom = '1px solid #f3e5ab';
+            li.addEventListener('mouseenter', () => li.style.background = '#fffbe6');
+            li.addEventListener('mouseleave', () => li.style.background = '');
+            li.addEventListener('click', function() {
+                // Mantener el término que escribió el usuario (puede ser marca, producto, categoría o nota)
+                searchInput.value = rawValue;
+                autocompleteList.style.display = 'none';
+                applySearch(searchInput.value);
+            });
+            autocompleteList.appendChild(li);
+        });
+        autocompleteList.style.display = 'block';
+    } else {
+        autocompleteList.style.display = 'none';
+    }
+});
+// Ocultar lista si se hace clic fuera
+searchInput.addEventListener('blur', function() {
+    setTimeout(() => autocompleteList.style.display = 'none', 200);
+});
+
+</script>
+<!-- Meta descripción para SEO -->
+<!-- Agrega esto dentro del <head> si no existe -->
+<!-- <meta name="description" content="Catálogo de fragancias femeninas y masculinas de ECO Perfumería. Descubre perfumes de diseñador y nicho."> -->
+<script>
+// JSON-LD dinámico para productos del catálogo (ItemList)
+// Limita a 100 ítems para no generar un script excesivo
+(function(){
+  try {
+    const rows = Array.from(document.querySelectorAll('.luxury-table tbody tr'));
+    const products = [];
+    for (let i = 0; i < rows.length && products.length < 100; i++) {
+      const row = rows[i];
+      const brand = row.querySelector('.brand-name')?.textContent.trim();
+      const product = row.querySelector('.product-name')?.textContent.trim();
+      if (brand && product) {
+        products.push({ brand, product });
+      }
+    }
+    if (products.length > 0) {
+      const itemList = {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "itemListElement": products.map(p => ({
+          "@type": "Product",
+          "name": p.product,
+          "brand": p.brand
+        }))
+      };
+      const script = document.createElement('script');
+      script.type = 'application/ld+json';
+      script.textContent = JSON.stringify(itemList);
+      document.head.appendChild(script);
+    }
+  } catch (e) { /* silencioso */ }
+})();
+</script>
+
+<!-- Vista de Catálogo en Tarjetas (Grid) + Controles -->
+<script>
+(function(){
+  try {
+    const tables = Array.from(document.querySelectorAll('table'));
+    if (!tables.length) return;
+
+    // Crear contenedor de controles y grid
+    const controls = document.createElement('div');
+    controls.className = 'catalog-controls';
+    const btnTable = document.createElement('button');
+    btnTable.className = 'btn-toggle active';
+    btnTable.type = 'button';
+    btnTable.textContent = 'Vista: Tabla';
+    const btnCards = document.createElement('button');
+    btnCards.className = 'btn-toggle';
+    btnCards.type = 'button';
+    btnCards.textContent = 'Vista: Tarjetas';
+    controls.appendChild(btnTable);
+    controls.appendChild(btnCards);
+
+    const grid = document.createElement('div');
+    grid.id = 'catalogGrid';
+    grid.className = 'catalog-grid';
+    grid.style.display = 'none';
+
+    // Insertar antes de la primera tabla
+    const firstTable = tables[0];
+    firstTable.parentElement.insertBefore(controls, firstTable);
+    controls.insertAdjacentElement('afterend', grid);
+
+    // Utilidad: obtener texto seguro
+    const getText = (el) => (el && el.textContent ? el.textContent.trim() : '');
+
+    // Construir tarjetas desde todas las filas de todas las tablas
+    const rows = [];
+    tables.forEach(t => {
+      const tbodies = Array.from(t.tBodies || []);
+      tbodies.forEach(tb => rows.push(...Array.from(tb.rows)));
+    });
+
+    rows.forEach(row => {
+      const cells = Array.from(row.cells || []);
+      if (!cells.length) return;
+      // Intentar por clases, si no, por índice de columnas conocidas
+      const brandEl = row.querySelector('.brand-name') || cells[0];
+      const productEl = row.querySelector('.product-name') || cells[1];
+      const categoryEl = row.querySelector('.category-badge') || cells[2];
+      const notesEl = row.querySelector('.notes-container') || cells[3];
+
+      const brand = getText(brandEl);
+      const product = getText(productEl);
+      const category = getText(categoryEl);
+      const notes = getText(notesEl);
+      if (!brand && !product) return;
+
+      const card = document.createElement('article');
+      card.className = 'product-card';
+
+      const header = document.createElement('div');
+      header.className = 'card-header';
+      const brandSpan = document.createElement('span');
+      brandSpan.className = 'brand';
+      brandSpan.textContent = brand;
+      const badge = document.createElement('span');
+      badge.className = 'card-badge';
+      badge.textContent = category || 'Fragancia';
+      header.appendChild(brandSpan);
+      header.appendChild(badge);
+
+      const body = document.createElement('div');
+      body.className = 'card-body';
+      const title = document.createElement('h3');
+      title.className = 'title';
+      title.textContent = product;
+      const notesP = document.createElement('p');
+      notesP.className = 'notes';
+      notesP.textContent = notes;
+
+      const actions = document.createElement('div');
+      actions.className = 'card-actions';
+      const btnView = document.createElement('button');
+      btnView.className = 'btn';
+      btnView.type = 'button';
+      btnView.textContent = 'Ver en tabla';
+      btnView.addEventListener('click', () => {
+        try {
+          row.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          // Marcar fila brevemente
+          const oldBg = row.style.background;
+          row.style.background = 'rgba(212,175,55,0.25)';
+          setTimeout(() => row.style.background = oldBg, 1200);
+          // Cambiar a vista tabla si estaba en tarjetas
+          if (grid.style.display !== 'none') switchToTable();
+        } catch (e) {}
+      });
+      const btnWa = document.createElement('a');
+      btnWa.className = 'btn whatsapp';
+      btnWa.target = '_blank';
+      const msg = encodeURIComponent(`Hola, me interesa la fragancia ${product} de ${brand}. ¿Me brindas más detalles?`);
+      btnWa.href = `https://wa.me/573176339319?text=${msg}`;
+      btnWa.innerHTML = '<i class="fab fa-whatsapp"></i> Consultar';
+
+      actions.appendChild(btnView);
+      actions.appendChild(btnWa);
+
+      body.appendChild(title);
+      if (notes) body.appendChild(notesP);
+      body.appendChild(actions);
+
+      card.appendChild(header);
+      card.appendChild(body);
+      grid.appendChild(card);
+    });
+
+    function switchToCards(){
+      btnTable.classList.remove('active');
+      btnCards.classList.add('active');
+      grid.style.display = '';
+      tables.forEach(t => t.style.display = 'none');
+    }
+    function switchToTable(){
+      btnCards.classList.remove('active');
+      btnTable.classList.add('active');
+      grid.style.display = 'none';
+      tables.forEach(t => t.style.display = '');
+    }
+
+    btnCards.addEventListener('click', switchToCards);
+    btnTable.addEventListener('click', switchToTable);
+  } catch (e) { /* silencioso */ }
+})();
+</script>
