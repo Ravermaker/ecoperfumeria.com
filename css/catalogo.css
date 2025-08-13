@@ -1,0 +1,338 @@
+body {
+            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a1a 50%, #000000 100%);
+            font-family: 'Lato', sans-serif;
+            position: relative;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 260px;
+            height: 260px;
+            background: url('../logo_eco_header.png') no-repeat center;
+            background-size: 90% 90%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.10;
+            filter: grayscale(10%) drop-shadow(0 0 24px #d4af37cc);
+            border-radius: 50%;
+            box-shadow: 0 0 40px 0 #d4af3733, 0 0 0 8px rgba(255,255,255,0.04) inset;
+            background-color: rgba(255,255,255,0.01);
+        }
+
+        .luxury-container {
+            position: relative;
+            z-index: 1;
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo-section {
+            background: linear-gradient(45deg, #2d3748, #4a5568, #2d3748);
+            border-bottom: 3px solid #d4af37;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .main-title {
+            font-family: 'Playfair Display', serif;
+            background: linear-gradient(135deg, #d4af37, #ffd700, #d4af37);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+        }
+
+        .slogan {
+            font-family: 'Cormorant Garamond', serif;
+            color: #e2e8f0;
+            text-shadow: 0 0 20px rgba(226, 232, 240, 0.5);
+            letter-spacing: 2px;
+        }
+
+        .luxury-table {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .luxury-table thead {
+            background: linear-gradient(135deg, #d4af37, #b8860b, #d4af37);
+        }
+
+        .luxury-table th {
+            font-family: 'Playfair Display', serif;
+            color: #000;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 20px 15px;
+            position: relative;
+        }
+
+        .luxury-table th::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #000, transparent);
+        }
+
+        .luxury-table tbody tr {
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .luxury-table tbody tr:hover {
+            background: rgba(212, 175, 55, 0.1);
+            transform: scale(1.01);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.2);
+        }
+
+        .luxury-table td {
+            padding: 15px;
+            color: #e2e8f0;
+            font-weight: 300;
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .luxury-table td:last-child {
+            border-right: none;
+        }
+
+        .brand-name {
+            font-weight: 700;
+            color: #d4af37;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .product-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1em;
+            color: #f7fafc;
+        }
+
+        .category-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .diseñador {
+            background: linear-gradient(135deg, #4299e1, #3182ce);
+            color: white;
+        }
+
+        .nicho {
+            background: linear-gradient(135deg, #9f7aea, #805ad5);
+            color: white;
+        }
+
+        .gender-icon {
+            margin-right: 8px;
+            opacity: 0.8;
+        }
+
+        .notes-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        .note-tag {
+            padding: 2px 8px;
+            background: rgba(212, 175, 55, 0.2);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 12px;
+            font-size: 0.75em;
+            color: #d4af37;
+        }
+
+        .section-divider {
+            height: 60px;
+            background: linear-gradient(90deg, transparent, #d4af37, transparent);
+            margin: 40px 0;
+            position: relative;
+        }
+
+        .section-divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100px;
+            height: 3px;
+            background: #d4af37;
+            box-shadow: 0 0 20px #d4af37;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            color: #d4af37;
+            text-align: center;
+            font-size: 2.5em;
+            font-weight: 700;
+            margin: 30px 0;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+        }
+
+        /* Controles de vista del catálogo */
+        .catalog-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            justify-content: flex-end;
+            margin: 0.5rem 1rem 1rem;
+        }
+        .catalog-controls .btn-toggle {
+            background: rgba(255,255,255,0.08);
+            color: #f7fafc;
+            border: 1px solid rgba(255,255,255,0.15);
+            padding: 8px 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all .2s ease;
+            font-weight: 600;
+        }
+        .catalog-controls .btn-toggle.active,
+        .catalog-controls .btn-toggle:hover {
+            background: linear-gradient(135deg, #d4af37, #b8860b, #d4af37);
+            color: #111;
+            box-shadow: 0 8px 24px rgba(212,175,55,.25);
+        }
+
+        /* Grid de catálogo en tarjetas */
+        .catalog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1rem;
+            padding: 0 1rem 1.5rem;
+            align-items: stretch;
+        }
+        .product-card {
+            display: flex;
+            flex-direction: column;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 24px rgba(0,0,0,0.25);
+            transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+        }
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 36px rgba(0,0,0,0.35);
+            border-color: rgba(212,175,55,0.35);
+        }
+        .product-card .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: .5rem;
+            padding: .75rem 1rem 0.25rem;
+        }
+        .product-card .brand {
+            font-weight: 800;
+            color: #f3e5ab;
+            letter-spacing: .5px;
+            text-transform: uppercase;
+        }
+        .product-card .card-badge {
+            font-size: .75rem;
+            padding: 4px 10px;
+            border-radius: 999px;
+            background: rgba(212,175,55,.15);
+            border: 1px solid rgba(212,175,55,.35);
+            color: #f7f1c0;
+            white-space: nowrap;
+        }
+        .product-card .card-body {
+            display: flex;
+            flex-direction: column;
+            gap: .4rem;
+            padding: 0.5rem 1rem 1rem;
+            flex: 1;
+        }
+        .product-card .title {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 700;
+            font-size: 1.05rem;
+            line-height: 1.2;
+            color: #fff;
+        }
+        .product-card .notes {
+            color: #cbd5e1;
+            font-size: .9rem;
+            opacity: .9;
+        }
+        .product-card .card-actions {
+            margin-top: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: .5rem;
+        }
+        .product-card .btn {
+            background: linear-gradient(135deg, #0047ab, #0c1f3f);
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.15);
+            padding: 8px 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform .15s ease, box-shadow .2s ease;
+            font-weight: 700;
+        }
+        .product-card .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 24px rgba(0,0,0,.35);
+        }
+        .product-card .btn.whatsapp {
+            background: #25d366;
+            color: #0b2918;
+            border-color: rgba(37,211,102,.5);
+        }
+        .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+
+        @media (prefers-reduced-motion: reduce) {
+            .product-card { transition: none; }
+            .product-card .btn { transition: none; }
+        }
+
+        @media print {
+            body::before {
+                opacity: 0.02;
+            }
+            .luxury-table tbody tr:hover {
+                transform: none;
+                background: transparent;
+            }
+        }
