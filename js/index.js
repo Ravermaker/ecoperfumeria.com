@@ -190,15 +190,52 @@ document.addEventListener('DOMContentLoaded', function() {
   const navToggle = document.getElementById('navToggle');
   const primaryNav = document.getElementById('primaryNav');
   function setNav(open) {
-    primaryNav.classList.toggle('open', open);
     const expanded = !!open;
+    primaryNav.classList.toggle('open', expanded);
     navToggle.setAttribute('aria-expanded', expanded);
     primaryNav.setAttribute('aria-hidden', !expanded);
+    document.body.classList.toggle('nav-open', expanded);
   }
   if (navToggle && primaryNav) {
     primaryNav.setAttribute('aria-hidden', 'true');
     navToggle.style.display = 'inline-flex';
     navToggle.addEventListener('click', () => setNav(!primaryNav.classList.contains('open')));
+    
+    // Cerrar menú al hacer clic en un enlace del nav
+    primaryNav.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => setNav(false));
+    });
+    
+    // Cerrar al hacer clic fuera del nav cuando está abierto
+    document.addEventListener('click', (e) => {
+      const isOpen = primaryNav.classList.contains('open');
+      const clickedInsideNav = primaryNav.contains(e.target);
+      const clickedToggle = navToggle.contains(e.target);
+      if (isOpen && !clickedInsideNav && !clickedToggle) {
+        setNav(false);
+      }
+    });
+    
+    // Cerrar con tecla ESC
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        setNav(false);
+      }
+    });
+    
+    // Resetear estado al cambiar el tamaño de la ventana
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768) {
+        // En escritorio, mostrar nav sin estado de overlay móvil
+        primaryNav.classList.remove('open');
+        primaryNav.removeAttribute('aria-hidden');
+        navToggle.setAttribute('aria-expanded', 'false');
+        document.body.classList.remove('nav-open');
+      } else {
+        // En móvil, ocultar por defecto
+        primaryNav.setAttribute('aria-hidden', String(!primaryNav.classList.contains('open')));
+      }
+    });
   }
   
     // Cargar mapa bajo demanda
